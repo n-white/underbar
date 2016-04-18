@@ -51,7 +51,7 @@
       for(var i = 0; i < collection.length; i ++) {
         iterator(collection[i], i, collection);
       };
-    } else {
+    } else {  
       for(var key in collection) {
         iterator(collection[key], key, collection);
       };
@@ -77,16 +77,37 @@
 
   // Return all elements of an array that pass a truth test.
   _.filter = function(collection, test) {
+    var newCollection = []
+    _.each(collection, function(x) {
+      if(test(x)) {
+        newCollection.push(x);
+      };
+    });
+    return newCollection;
   };
 
   // Return all elements of an array that don't pass a truth test.
   _.reject = function(collection, test) {
     // TIP: see if you can re-use _.filter() here, without simply
     // copying code in and modifying it
+    var newCollection = [];
+    _.each(collection, function(x) {
+      if(!test(x)) {
+        newCollection.push(x);
+      };
+    });
+    return newCollection;    
   };
 
   // Produce a duplicate-free version of the array.
   _.uniq = function(array) {
+    var newArray = [];
+    _.each(array, function(item) {
+      if(_.indexOf(newArray, item) === -1) {
+        newArray.push(item);
+      };
+    });
+    return newArray;
   };
 
 
@@ -95,6 +116,11 @@
     // map() is a useful primitive iteration function that works a lot
     // like each(), but in addition to running the operation on all
     // the members, it also maintains an array of results.
+    var newArray = [];
+    _.each(collection, function(item) {
+      newArray.push(iterator(item));
+    })
+    return newArray;
   };
 
   /*
