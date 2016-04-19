@@ -245,27 +245,36 @@
   //     bla: "even more stuff"
   //   }); // obj1 now contains key1, key2, key3 and bla
   _.extend = function(obj) {
-    var newObj = {}
+    
     for(var i = 0; i < arguments.length; i++) {
       for(var key in arguments[i]) {
-        newObj[key] = arguments[i][key];
+        obj[key] = arguments[i][key];
       }
     }
-    return newObj    
+    return obj
+        
   };
 
   // Like extend, but doesn't ever overwrite a key that already
   // exists in obj
   _.defaults = function(obj) {
-    var newObj = {}
+    
+        var newObj = {};
+    var argumentsArray = [];
+    
     for(var i = 0; i < arguments.length; i++) {
-      for(var key in arguments[i]) {
+      argumentsArray.push(arguments[i])
+    }
+    
+    for(var i = 0; i < argumentsArray.length; i++) {
+      for(var key in argumentsArray[i]) {
         if(!newObj.hasOwnProperty(key)) {
-          newObj[key] = arguments[i][key];
+          newObj[key] = argumentsArray[i][key];
         };
       };
     };
     return newObj
+
   };
 
 
