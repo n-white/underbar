@@ -261,9 +261,7 @@
     
     var argumentsArray = [];
     
-    for(var i = 0; i < arguments.length; i++) {
-      argumentsArray.push(arguments[i])
-    }
+    _.each(arguments, function(item) {argumentsArray.push(item)});
     
     for(var i = 0; i < argumentsArray.length; i++) {
       for(var key in argumentsArray[i]) {
