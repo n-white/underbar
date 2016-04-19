@@ -252,14 +252,13 @@
       }
     }
     return obj
-        
+
   };
 
   // Like extend, but doesn't ever overwrite a key that already
   // exists in obj
   _.defaults = function(obj) {
     
-        var newObj = {};
     var argumentsArray = [];
     
     for(var i = 0; i < arguments.length; i++) {
@@ -268,12 +267,12 @@
     
     for(var i = 0; i < argumentsArray.length; i++) {
       for(var key in argumentsArray[i]) {
-        if(!newObj.hasOwnProperty(key)) {
-          newObj[key] = argumentsArray[i][key];
+        if(!obj.hasOwnProperty(key)) {
+          obj[key] = argumentsArray[i][key];
         };
       };
     };
-    return newObj
+    return obj
 
   };
 
