@@ -92,16 +92,7 @@
     // copying code in and modifying it
     
     return _.filter(collection, function(x) {return test(x) === false;});
-
-
-    /*var newCollection = [];
-    _.each(collection, function(x) {
-      if(!test(x)) {
-        newCollection.push(x);
-      };
-    });
-    return newCollection;
-    */    
+   
   };
 
   // Produce a duplicate-free version of the array.
