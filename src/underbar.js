@@ -255,10 +255,8 @@
   // exists in obj
   _.defaults = function(obj) {
     
-    var argumentsArray = [];
-    
-    _.each(arguments, function(item) {argumentsArray.push(item)});
-    
+    var argumentsArray = Array.prototype.slice.call(arguments);
+  
     for(var i = 0; i < argumentsArray.length; i++) {
       for(var key in argumentsArray[i]) {
         if(!obj.hasOwnProperty(key)) {
@@ -312,6 +310,18 @@
   // already computed the result for the given argument and return that value
   // instead if possible.
   _.memoize = function(func) {
+
+    /*
+
+    Thoughts on how to tackle this function:
+
+    1. Declare an empty object
+    2. Create a copy arguments object into an array using .slice()
+    3. When iterating through the list of arguments, store the argument and result as a key: value pairing in the object declared in #1
+    4. Utilize an if/else statement to test whether an argument has already been passed through the function (by checking the keys in the object)
+
+    */
+
   };
 
   // Delays a function for the given number of milliseconds, and then calls
