@@ -326,16 +326,17 @@
     var results = {};
     var arraySlice = Array.prototype.slice;
 
-    return function() {
+    var memoized = function() {
       var argArray = arraySlice.call(arguments);
 
-      if (results.hasOwnProperty(argArray))
-        return results[argArray];
-      else
-        return (results[argArray] = func.apply(this, argArray));
+          if (results.hasOwnProperty(JSON.stringify(argArray))) 
+            return results[JSON.stringify(argArray)];
+          else
+            return (results[JSON.stringify(argArray)] = func.apply(this, argArray));
 
     };
 
+    return memoized;
 
   };
 
@@ -346,6 +347,10 @@
   // parameter. For example _.delay(someFunction, 500, 'a', 'b') will
   // call someFunction('a', 'b') after 500ms
   _.delay = function(func, wait) {
+
+    var args = Array.prototype.slice.call(arguments)
+    return args
+
   };
 
 
@@ -360,6 +365,7 @@
   // input array. For a tip on how to make a copy of an array, see:
   // http://mdn.io/Array.prototype.slice
   _.shuffle = function(array) {
+
   };
 
 
