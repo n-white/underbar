@@ -354,6 +354,27 @@
   // http://mdn.io/Array.prototype.slice
   _.shuffle = function(array) {
 
+    var arrayCopy = array.slice();
+    var randomArray = [];
+    var index;
+    
+    while (randomArray.length < array.length) {
+    
+      //select a random element from arrayCopy
+    
+      var index = Math.floor(Math.random() * arrayCopy.length)
+    
+      //push random element to randomArray
+    
+      randomArray.push(arrayCopy[index]);
+    
+      //remove random element from arrayCopy 
+    
+      arrayCopy.splice(index, 1);
+    } 
+
+    return randomArray;
+
   };
 
 
