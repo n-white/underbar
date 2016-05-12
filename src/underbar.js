@@ -309,24 +309,25 @@
   // _.memoize should return a function that, when called, will check if it has
   // already computed the result for the given argument and return that value
   // instead if possible.
+
+
+
   _.memoize = function(func) {
 
-    var results = {};
-    var arraySlice = Array.prototype.slice;
+    var objCache = {}
 
-    var memoized = function() {
-      var argArray = arraySlice.call(arguments);
+    return function () {
 
-          if (results.hasOwnProperty(JSON.stringify(argArray))) 
-            return results[JSON.stringify(argArray)];
-          else
-            return (results[JSON.stringify(argArray)] = func.apply(this, argArray));
-
-    };
-
-    return memoized;
+      if(objCache.hasOwnProperty(JSON.stringify(arguments))) {
+        return objCache[JSON.stringify(arguments)];
+      } else {
+        return (objCache[JSON.stringify(arguments)] = func.apply(this, arguments));
+      }
+    }
 
   };
+
+
 
   // Delays a function for the given number of milliseconds, and then calls
   // it with the arguments supplied.
@@ -435,7 +436,20 @@
   //
   // Hint: Use Array.isArray to check if something is an array
   _.flatten = function(nestedArray, result) {
-  };
+
+  var newArr = []
+  
+  for(var i = 0; i < nestedArray.length; i++) {
+    if(Array.isArray(nestedArray[i])) {
+      newArr = newArr.concat(flatten(nestedArray[i]))
+    } else {
+      newArr.push(nestedArray[i])
+    }
+  }
+  
+  return newArr
+  
+};
 
   // Takes an arbitrary number of arrays and produces an array that contains
   // every item shared between all the passed-in arrays.
